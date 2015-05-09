@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  gather_facts: yes
+
+  roles:
+    - { role: cibox-swap }
+    - { role: wkhtmltopdf-service }
+    - { role: ansible-role-ansible }
+    - { role: ansible-apache }
+    - { role: ansible-role-php }
+    - { role: ansible-role-php-xhprof }

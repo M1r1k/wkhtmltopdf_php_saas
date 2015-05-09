@@ -1,0 +1,52 @@
+#!/bin/bash
+ 
+echo ''
+ 
+XVFB=`which Xvfb`
+ 
+if [ "$XVFB" == '' ]; then
+        echo 'Xvfb is not installed'
+        echo ''
+        exit 1;
+fi
+ 
+XRANDR=`which xrandr`
+ 
+if [ "$XRANDR" == '' ]; then
+        SCREEN=0
+else
+        INFO=`$XRANDR -q`;
+        EXPR='Screen ([0-9]+):'
+ 
+        if [[ $INFO =~ $EXPR ]]; then
+                SCREEN=$((${BASH_REMATCH[${#BASH_REMATCH[*]} - 1]} + 1))
+        else
+                SCREEN=0
+        fi
+fi
+ 
+XVFBARGS=":$SCREEN -screen $SCREEN 1024x768x24 -ac +extension GLX +render -noreset"
+PIDFILE=/var/run/xvfb.pid
+ 
+case "$1" in
+        start)
+                echo 'Starting virtual X frame buffer: Xvfb'
+                start-stop-daemon --chuid www-data --start --quiet --pidfile $PIDFILE --make-pidfile --background --exec $XVFB "$XVFBARGS"
+                ;;
+        stop)
+                echo 'Stopping virtual X frame buffer: Xvfb'
+                start-stop-daemon --chuid www-data --stop --quiet --pidfile $PIDFILE
+                ;;
+        restart)
+                $0 stop
+                $0 start
+                ;;
+        *)
+                echo 'Usage: '$0' {start|stop|restart}'
+                echo ''
+                exit 1
+esac
+ 
+echo ''
+ 
+exit 0

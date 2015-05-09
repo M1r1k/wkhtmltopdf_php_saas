@@ -1,0 +1,21 @@
+---
+
+apt_repos:
+  - ppa:ansible/ansible
+
+apt_packages:
+  - htop
+  - vim
+  - time
+  - tree
+  - make
+  - ansible
+  - git
+  - wkhtmltopdf
+  - xfonts-100dpi
+  - xfonts-75dpi
+  - xfonts-scalable
+  - xfonts-cyrillic
+  - xvfb
+  - x11-apps
+  - imagemagick
