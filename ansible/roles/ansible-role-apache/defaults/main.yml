@@ -5,7 +5,7 @@ apache_listen_port: 80
 apache_listen_port_ssl: 443
 
 apache_create_vhosts: true
-apache_vhosts_filename: "vhosts.conf"
+apache_vhosts_filename: vhosts.conf
 
 apache_vhosts:
   # Additional properties: 'serveradmin, serveralias, extra_parameters'.

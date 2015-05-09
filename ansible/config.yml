@@ -3,7 +3,7 @@ vagrantfile-local:
     vm:
         box: ubuntu/trusty64
         network:
-            private_network: 192.168.32.23
+            private_network: 192.168.1.2
             forwarded_port:
                 CocLsFE7aIwA:
                     host: '8081'

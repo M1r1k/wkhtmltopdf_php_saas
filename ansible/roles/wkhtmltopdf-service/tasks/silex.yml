@@ -1,7 +1,7 @@
 ---
 
 - name: Clone/Update repo
-  git: repo=https://github.com/M1r1k/wkhtmltopdf_php_saas.git dest=/var/www/wkhtmltopdf refspec=+refs/pull/*:refs/heads/*
+  git: repo=https://github.com/M1r1k/wkhtmltopdf_php_saas.git dest=/var/wkhtmltopdf version=master force=yes
 
 - name: Run composer updates
-  shell: cd /var/www/wkhtmltopdf && composer up
+  shell: cd /var/wkhtmltopdf && composer up

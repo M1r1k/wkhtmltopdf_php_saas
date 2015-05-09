@@ -2,12 +2,16 @@
 
 use App\Controllers\WkHtmlTpPdfController;
 use mikehaertl\wkhtmlto\Pdf;
+use Psr\Log\LogLevel;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 define("ROOT_PATH", __DIR__ . "/..");
+
+$app['debug'] = true;
+$app['log.level'] = LogLevel::DEBUG;
 
 $app->before(function (Request $request) {
   if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
@@ -33,7 +37,11 @@ $app['rest.controller'] = function () {
   return new WkHtmlTpPdfController();
 };
 
-$app->post('/rest/pdf/generate', 'rest.controller:generate');
+$app->post('/rest/pdf:q/generate', 'rest.controller:generate');
+
+$app->get('/', function() {
+  return 'Server works!!!';
+});
 
 $app->register(new MonologServiceProvider(), array(
   "monolog.logfile" => ROOT_PATH . "/storage/logs/" . date('Y-m-d', time()) . ".log",

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a3f7fba97de602dce6aa688c733a4772",
+    "hash": "798d31bb5c27836f482bb1a07b633c64",
     "packages": [
         {
             "name": "mikehaertl/php-shellcommand",
@@ -129,16 +129,16 @@
         },
         {
             "name": "pimple/pimple",
-            "version": "v3.0.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Pimple.git",
-                "reference": "876bf0899d01feacd2a2e83f04641e51350099ef"
+                "reference": "2019c145fe393923f3441b23f29bbdfaa5c58c4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/876bf0899d01feacd2a2e83f04641e51350099ef",
-                "reference": "876bf0899d01feacd2a2e83f04641e51350099ef",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/2019c145fe393923f3441b23f29bbdfaa5c58c4d",
+                "reference": "2019c145fe393923f3441b23f29bbdfaa5c58c4d",
                 "shasum": ""
             },
             "require": {
@@ -147,12 +147,12 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
                 "psr-0": {
-                    "Pimple": "src/"
+                    "Pimple": "lib/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -171,7 +171,7 @@
                 "container",
                 "dependency injection"
             ],
-            "time": "2014-07-24 09:48:15"
+            "time": "2013-11-22 08:30:29"
         },
         {
             "name": "psr/log",
@@ -213,68 +213,63 @@
         },
         {
             "name": "silex/silex",
-            "version": "dev-master",
+            "version": "v1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Silex.git",
-                "reference": "bdbf5b78181dbfd2cf41d100e0866d385b151638"
+                "reference": "417deb440eecf776df868d8760d0b7d8e2c4e6d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Silex/zipball/bdbf5b78181dbfd2cf41d100e0866d385b151638",
-                "reference": "bdbf5b78181dbfd2cf41d100e0866d385b151638",
+                "url": "https://api.github.com/repos/silexphp/Silex/zipball/417deb440eecf776df868d8760d0b7d8e2c4e6d1",
+                "reference": "417deb440eecf776df868d8760d0b7d8e2c4e6d1",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9",
-                "pimple/pimple": "~3.0",
-                "symfony/event-dispatcher": "~2.6",
-                "symfony/http-foundation": "~2.6",
-                "symfony/http-kernel": "~2.6",
-                "symfony/routing": "~2.6"
-            },
-            "replace": {
-                "silex/api": "self.version",
-                "silex/providers": "self.version"
+                "php": ">=5.3.3",
+                "pimple/pimple": "~1.0",
+                "symfony/event-dispatcher": "~2.3,<2.7",
+                "symfony/http-foundation": "~2.3,<2.7",
+                "symfony/http-kernel": "~2.3,<2.7",
+                "symfony/routing": "~2.3,<2.7"
             },
             "require-dev": {
                 "doctrine/dbal": "~2.2",
                 "monolog/monolog": "~1.4,>=1.4.1",
                 "swiftmailer/swiftmailer": "5.*",
-                "symfony/browser-kit": "~2.6",
-                "symfony/config": "~2.6",
-                "symfony/css-selector": "~2.6",
-                "symfony/debug": "~2.6",
-                "symfony/doctrine-bridge": "~2.6",
-                "symfony/dom-crawler": "~2.6",
-                "symfony/finder": "~2.6",
-                "symfony/form": "~2.6",
-                "symfony/locale": "~2.6",
-                "symfony/monolog-bridge": "~2.6",
-                "symfony/options-resolver": "~2.6",
-                "symfony/process": "~2.6",
-                "symfony/security": "~2.6",
-                "symfony/serializer": "~2.6",
-                "symfony/translation": "~2.6",
-                "symfony/twig-bridge": "~2.6",
-                "symfony/validator": "~2.6",
+                "symfony/browser-kit": "~2.3,<2.7",
+                "symfony/config": "~2.3,<2.7",
+                "symfony/css-selector": "~2.3,<2.7",
+                "symfony/debug": "~2.3,<2.7",
+                "symfony/dom-crawler": "~2.3,<2.7",
+                "symfony/finder": "~2.3,<2.7",
+                "symfony/form": "~2.3,<2.7",
+                "symfony/locale": "~2.3,<2.7",
+                "symfony/monolog-bridge": "~2.3,<2.7",
+                "symfony/options-resolver": "~2.3,<2.7",
+                "symfony/process": "~2.3,<2.7",
+                "symfony/security": "~2.3,<2.7",
+                "symfony/serializer": "~2.3,<2.7",
+                "symfony/translation": "~2.3,<2.7",
+                "symfony/twig-bridge": "~2.3,<2.7",
+                "symfony/validator": "~2.3,<2.7",
                 "twig/twig": ">=1.8.0,<2.0-dev"
             },
             "suggest": {
-                "symfony/browser-kit": "~2.6",
-                "symfony/css-selector": "~2.6",
-                "symfony/dom-crawler": "~2.6",
-                "symfony/form": "~2.6"
+                "symfony/browser-kit": "~2.3",
+                "symfony/css-selector": "~2.3",
+                "symfony/dom-crawler": "~2.3",
+                "symfony/form": "~2.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Silex\\": "src/Silex"
+                "psr-0": {
+                    "Silex": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -296,7 +291,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2015-05-08 15:01:15"
+            "time": "2015-04-11 12:43:27"
         },
         {
             "name": "symfony/debug",
@@ -624,7 +619,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "silex/silex": 20,
         "mikehaertl/phpwkhtmltopdf": 20
     },
     "prefer-stable": false,

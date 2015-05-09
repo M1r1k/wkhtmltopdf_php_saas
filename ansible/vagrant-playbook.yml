@@ -2,10 +2,42 @@
 
 - hosts: all
 
+  vars:
+    apache_listen_port: 80
+    apache_listen_port_ssl: 443
+    apache_create_vhosts: true
+    apache_vhosts_filename: vhosts.conf
+    cibox_ssl_folder: /etc/apache/ssl
+    apache_vhosts:
+      - {
+        servername: "wkhtmltopdf.dev",
+        documentroot: "/var/wkhtmltopdf/web"
+      }
+    apache_mods_enabled:
+      - rewrite.load
+    php_packages:
+      - php5-intl
+      - php5-mcrypt
+      - php-apc
+    php_use_managed_ini: true
+    php_display_errors: On
+    php_error_reporting: '-1'
+    php_max_execution_time: '3000'
+    php_memory_limit: 1024M
+    php_post_max_size: 64M
+    php_upload_max_filesize: 64M
+
+    php_enable_apc: true
+    php_apc_cache_by_default: "1"
+    php_apc_shm_size: "96M"
+    php_apc_stat: "1"
+    php_apc_enable_cli: "0"
+
   roles:
     - { role: cibox-swap }
-    - { role: wkhtmltopdf-service }
     - { role: ansible-role-ansible }
     - { role: ansible-role-apache }
     - { role: ansible-role-php }
     - { role: ansible-role-php-xhprof }
+    - { role: ansible-composer }
+    - { role: wkhtmltopdf-service }

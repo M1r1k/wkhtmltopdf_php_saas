@@ -2,3 +2,5 @@ vendor
 pdf_files/*.pdf
 .idea
 .vagrant
+composer.lock
+wkhtmltopdf
