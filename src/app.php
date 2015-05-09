@@ -1,6 +1,6 @@
 <?php
 
-use App\Controllers\WkHtmlTpPdfController;
+use App\Controllers\WkHtmlToPdfController;
 use mikehaertl\wkhtmlto\Pdf;
 use Psr\Log\LogLevel;
 use Silex\Provider\MonologServiceProvider;
@@ -24,20 +24,23 @@ $app->register(new ServiceControllerServiceProvider());
 
 $app['wkhtmlto.pdf'] = function () {
   return new Pdf([
-    'no-outline',
     'margin-top' => 0,
     'margin-right' => 0,
     'margin-bottom' => 0,
     'margin-left' => 0,
-    'disable-smart-shrinking',
+    'use-xserver',
+    'commandOptions' => [
+      'enableXvfb' => true,
+      'xvfbRunOptions' => '--server-args="-screen 0, 1024x680x24"',
+    ],
   ]);
 };
 
 $app['rest.controller'] = function () {
-  return new WkHtmlTpPdfController();
+  return new WkHtmlToPdfController();
 };
 
-$app->post('/rest/pdf:q/generate', 'rest.controller:generate');
+$app->post('/rest/pdf/generate', 'rest.controller:generate');
 
 $app->get('/', function() {
   return 'Server works!!!';

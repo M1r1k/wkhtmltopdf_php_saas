@@ -21,7 +21,7 @@
 
 - name: Enable xvfb on boot
   sudo: yes
-  shell: update-rc.d xvfb defaults
+  shell: update-rc.d xvfb defaults 10
 
 - name: Enable xvfb
   sudo: yes

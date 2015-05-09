@@ -19,3 +19,7 @@ apt_packages:
   - xvfb
   - x11-apps
   - imagemagick
+  - openssl
+  - build-essential
+  - xorg
+  - libssl-dev
