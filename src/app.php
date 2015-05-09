@@ -29,6 +29,8 @@ $app['wkhtmlto.pdf'] = function () {
     'margin-bottom' => 0,
     'margin-left' => 0,
     'use-xserver',
+    'no-stop-slow-scripts',
+    'javascript-delay' => '3000',
     'commandOptions' => [
       'enableXvfb' => true,
       'xvfbRunOptions' => '--server-args="-screen 0, 1024x680x24"',
