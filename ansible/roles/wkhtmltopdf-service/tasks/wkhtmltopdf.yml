@@ -1,0 +1,18 @@
+---
+
+- name: Check if my_package is installed
+  command: dpkg-query -W wkhtmltopdf
+  register: wkhtmltopdf_check_deb
+  failed_when: wkhtmltopdf_check_deb.rc > 1
+  changed_when: wkhtmltopdf_check_deb.rc == 1
+
+- name: Download my_package
+  get_url:
+    url="{{ wkhtmltopdf_package_url }}"
+    dest="/tmp/{{ wkhtmltopdf_package_name }}.deb"
+  when: wkhtmltopdf_check_deb.rc == 1
+
+- name: Install my_package
+  apt: deb="/tmp/{{ wkhtmltopdf_package_name }}.deb"
+  sudo: true
+  when: wkhtmltopdf_check_deb.rc == 1

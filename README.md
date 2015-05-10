@@ -18,12 +18,12 @@ cd wkhtmltopdf_php_saas
 vagrant up
 ```
 
-Add "192.168.1.2 wkhtmltopdf.dev" to /etc/hosts.
+Add "192.168.150.250 wkhtmltopdf.dev" to /etc/hosts.
 
 Then make POST to generate Google frontpage.
 
 `
-curl -H "Content-Type: application/json" -X POST -d '{"url":"https://www.google.com/"}' http://wkhtmltopdf.dev/rest/generate > test.pdf
+curl -H "Content-Type: application/json" -X POST -d '{"url":"https://www.google.com/"}' http://wkhtmltopdf.dev/rest/pdf/generate > test.pdf
 `
 
 Deploying to server (Digital Ocean example)

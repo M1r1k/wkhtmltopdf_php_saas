@@ -11,7 +11,6 @@ apt_packages:
   - make
   - ansible
   - git
-  - wkhtmltopdf
   - xfonts-100dpi
   - xfonts-75dpi
   - xfonts-scalable
@@ -23,3 +22,6 @@ apt_packages:
   - build-essential
   - xorg
   - libssl-dev
+
+wkhtmltopdf_package_name: wkhtmltopdf
+wkhtmltopdf_package_url: http://downloads.sourceforge.net/wkhtmltopdf/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb

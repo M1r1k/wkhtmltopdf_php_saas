@@ -14,6 +14,8 @@
   sudo: yes
   with_items: apt_packages
 
+- include: wkhtmltopdf.yml
+
 - include: silex.yml
 
 - name: Create xvfb startup script
