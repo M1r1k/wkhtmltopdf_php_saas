@@ -4,26 +4,69 @@ namespace App\Controllers;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
+
 class WkHtmlToPdfController {
 
+  /* @var Application */
+  protected $app;
+  /* @var Request; */
+  protected $request;
+  /* @var \mikehaertl\wkhtmlto\Pdf */
+  protected $pdf;
+  /* @var \m1r1k\SejdaConsole\Sejda */
+  protected $sejda;
+  /* @var string */
+  protected $tmpFileName;
+
   public function generate(Request $request, Application $app) {
-    /* @var \mikehaertl\wkhtmlto\Pdf $pdf_generator */
-    $pdf_generator = $app['wkhtmlto.pdf'];
+    $this->app = $app;
+    $this->request = $request;
+
     $url = $request->get('url');
+    $this->tmpFileName = '/tmp/' . substr(md5(rand()), 0, 15) . '.pdf';
 
     if (is_string($url)) {
-      $pdf_generator->addPage($url);
+      $this->processSinglePage($url);
     }
     else {
-      foreach ($url as $single_url) {
-        $pdf_generator->addPage($single_url);
-      }
+      $this->processMultiplePages($url);
     }
-    $pdf_generator->saveAs('/tmp/new.pdf');
-    if (!file_exists('/tmp/new.pdf')) {
-      $app->abort(404, $pdf_generator->getError());
+
+    return $app->sendFile($this->tmpFileName);
+  }
+
+  protected function processMultiplePages($urls) {
+    $this->initPdf();
+    $this->initSejda();
+    $dir_name = '/tmp/' . substr(md5(rand()), 0, 10);
+    mkdir($dir_name, 0700);
+    foreach ($urls as $key => $single_url) {
+      $this->pdf->addPage($single_url);
+      $this->pdf->saveAs($dir_name . '/' . $key . '.pdf');
+      $this->pdf->cleanBuffer();
     }
-    return $app->sendFile('/tmp/new.pdf');
+    $this->sejda->addDirectories($dir_name);
+    $this->sejda->saveAs($this->tmpFileName);
+    if (!file_exists($this->tmpFileName)) {
+      $this->app->abort(404, $this->sejda->getError());
+    }
+  }
+
+  protected function processSinglePage($url) {
+    $this->initPdf();
+    $this->pdf->addPage($url);
+    $this->pdf->saveAs($this->tmpFileName);
+    if (!file_exists($this->tmpFileName)) {
+      $this->app->abort(404, $this->pdf->getError());
+    }
+  }
+
+  protected function initPdf() {
+    $this->pdf = $this->app['wkhtmlto.pdf'];
+  }
+
+  protected function initSejda() {
+    $this->sejda = $this->app['sejda'];
   }
 
 }

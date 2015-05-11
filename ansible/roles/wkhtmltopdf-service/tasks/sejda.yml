@@ -1,0 +1,24 @@
+---
+- name: Check if Sejda-console is downloaded
+  stat: path=/var/lib/sejda/sejda-console-1.0.0.M10
+  register: sejda_console
+
+- name: Download Sejda-console
+  get_url: url=https://github.com/torakiki/sejda/releases/download/v1.0.0.M10/sejda-console-1.0.0.M10-bin.zip dest=/tmp/sejda.zip mode=0755
+  when: sejda_console.stat.exists == false
+
+- name: Create dir for Sejda-console
+  file: path=/var/lib/sejda state=directory
+  when: sejda_console.stat.exists == false
+
+- name: Get Sejda-console driver
+  shell: unzip /tmp/sejda.zip -d /var/lib/sejda
+  when: sejda_console.stat.exists == false
+
+- name: Make driver executable
+  file: path=/var/lib/sejda/sejda-console-1.0.0.M10/bin/sejda-console state=touch mode=0777
+  when: sejda_console.stat.exists == false
+
+- name: Symlink to PATH
+  shell: ln -s /var/lib/sejda/sejda-console-1.0.0.M10/bin/sejda-console /usr/local/bin/sejda-console
+  when: sejda_console.stat.exists == false

@@ -1,15 +1,12 @@
 ---
 
-apt_repos:
-  - ppa:ansible/ansible
-
 apt_packages:
   - htop
   - vim
+  - unzip
   - time
   - tree
   - make
-  - ansible
   - git
   - xfonts-100dpi
   - xfonts-75dpi
@@ -23,5 +20,5 @@ apt_packages:
   - xorg
   - libssl-dev
 
-wkhtmltopdf_package_name: wkhtmltopdf
+wkhtmltopdf_package_name: wkhtmltopdfq
 wkhtmltopdf_package_url: http://downloads.sourceforge.net/wkhtmltopdf/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb

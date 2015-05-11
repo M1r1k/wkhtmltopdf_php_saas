@@ -4,10 +4,8 @@
 
   vars:
     apache_listen_port: 80
-    apache_listen_port_ssl: 443
     apache_create_vhosts: true
     apache_vhosts_filename: vhosts.conf
-    cibox_ssl_folder: /etc/apache/ssl
     apache_vhosts:
       - {
         servername: "wkhtmltopdf.dev",
@@ -17,8 +15,10 @@
       - rewrite.load
     php_packages:
       - php5-intl
+      - php5-cli
       - php5-mcrypt
       - php-apc
+      - libapache2-mod-php5
     php_use_managed_ini: true
     php_display_errors: On
     php_error_reporting: '-1'
@@ -38,6 +38,6 @@
     - { role: ansible-role-ansible }
     - { role: ansible-role-apache }
     - { role: ansible-role-php }
-    - { role: ansible-role-php-xhprof }
     - { role: ansible-composer }
+    - { role: ansible-role-java }
     - { role: wkhtmltopdf-service }

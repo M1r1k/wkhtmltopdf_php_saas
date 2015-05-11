@@ -1,6 +1,7 @@
 <?php
 
 use App\Controllers\WkHtmlToPdfController;
+use m1r1k\SejdaConsole\Sejda;
 use mikehaertl\wkhtmlto\Pdf;
 use Psr\Log\LogLevel;
 use Silex\Provider\MonologServiceProvider;
@@ -28,7 +29,9 @@ $app['wkhtmlto.pdf'] = function () {
     'margin-right' => 0,
     'margin-bottom' => 0,
     'margin-left' => 0,
+    'outline',
     'use-xserver',
+    'enable-internal-links',
     'no-stop-slow-scripts',
     'javascript-delay' => '3000',
     'commandOptions' => [
@@ -36,6 +39,10 @@ $app['wkhtmlto.pdf'] = function () {
       'xvfbRunOptions' => '--server-args="-screen 0, 1024x680x24"',
     ],
   ]);
+};
+
+$app['sejda'] = function () {
+  return new Sejda();
 };
 
 $app['rest.controller'] = function () {

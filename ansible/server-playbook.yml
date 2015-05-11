@@ -39,7 +39,7 @@
     - { role: ansible-role-ansible }
     - { role: ansible-apache }
     - { role: ansible-role-php }
-    - { role: ansible-role-php-xhprof }
-    - { role: ansible-cocmposer }
+    - { role: ansible-composer }
+    - { role: ansible-role-java }
     - { role: wkhtmltopdf-service }
 

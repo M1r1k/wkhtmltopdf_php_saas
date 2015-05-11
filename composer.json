@@ -1,8 +1,15 @@
 {
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/M1r1k/phpwkhtmltopdf"
+    }
+  ],
   "require": {
     "silex/silex": "1.3.*@dev",
     "monolog/monolog": "~1.6",
-    "mikehaertl/phpwkhtmltopdf": "2.0.*@dev"
+    "mikehaertl/phpwkhtmltopdf": "dev-master",
+    "m1r1k/php-sejda-console": "dev-master"
   },
   "autoload": {
     "psr-0": {
