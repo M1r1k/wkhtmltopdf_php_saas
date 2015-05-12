@@ -42,7 +42,12 @@ $app['wkhtmlto.pdf'] = function () {
 };
 
 $app['sejda'] = function () {
-  return new Sejda();
+  return new Sejda([
+    'commandOptions' => [
+      '--overwrite',
+      '--bookmarks' => 'one_entry_each_doc',
+    ],
+  ]);
 };
 
 $app['rest.controller'] = function () {

@@ -43,11 +43,17 @@ class WkHtmlToPdfController {
     foreach ($urls as $key => $single_url) {
       $this->pdf->addPage($single_url);
       $this->pdf->saveAs($dir_name . '/' . $key . '.pdf');
+      if ($error = $this->pdf->getError()) {
+        $this->app['monolog']->addError($this->pdf->getCommand()->getOutput());
+        $this->app['monolog']->addError($error);
+      }
       $this->pdf->cleanBuffer();
     }
     $this->sejda->addDirectories($dir_name);
     $this->sejda->saveAs($this->tmpFileName);
     if (!file_exists($this->tmpFileName)) {
+      $this->app['monolog']->addError($this->sejda->getCommand()->getOutput());
+      $this->app['monolog']->addError($this->sejda->getError());
       $this->app->abort(404, $this->sejda->getError());
     }
   }
