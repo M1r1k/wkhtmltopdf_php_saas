@@ -5,3 +5,6 @@
 
 - name: Run composer updates
   shell: cd /var/wkhtmltopdf && composer up
+
+- name: Give permissions to webserver
+  file: path=/var/wkhtmltopdf recurse=yes state=directory mode="u=rwx,g=r,o=r" owner=www-data group=www-data

@@ -43,10 +43,8 @@ $app['wkhtmlto.pdf'] = function () {
 
 $app['sejda'] = function () {
   return new Sejda([
-    'commandOptions' => [
-      '--overwrite',
-      '--bookmarks' => 'one_entry_each_doc',
-    ],
+    '--overwrite',
+    '--bookmarks' => 'one_entry_each_doc',
   ]);
 };
 
