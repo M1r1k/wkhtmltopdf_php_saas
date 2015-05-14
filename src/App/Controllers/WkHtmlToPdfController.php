@@ -41,8 +41,8 @@ class WkHtmlToPdfController {
     $dir_name = '/tmp/' . substr(md5(rand()), 0, 10);
     mkdir($dir_name, 0700);
     $index = 0;
-    foreach ($urls as $key => $info) {
-      $this->pdf->addPage($info['url']);
+    foreach ($urls as $key => $url) {
+      $this->pdf->addPage($url);
       $this->pdf->saveAs($dir_name . '/' . sprintf('%08d', $index++) . $key . '.pdf');
       if ($error = $this->pdf->getError()) {
         $this->app['monolog']->addError($this->pdf->getCommand()->getOutput());
