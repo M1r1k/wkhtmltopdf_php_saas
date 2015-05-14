@@ -34,9 +34,13 @@ $app['wkhtmlto.pdf'] = function () {
     'enable-internal-links',
     'no-stop-slow-scripts',
     'javascript-delay' => '3000',
+    '--print-media-type',
+    '--orientation' => 'portrait',
+    '--page-size' => 'A4',
+    '--dpi' => '300',
     'commandOptions' => [
       'enableXvfb' => true,
-      'xvfbRunOptions' => '--server-args="-screen 0, 1024x680x24"',
+      'xvfbRunOptions' => '--server-args="-screen 0, 1024x640x24"',
     ],
   ]);
 };
@@ -44,7 +48,6 @@ $app['wkhtmlto.pdf'] = function () {
 $app['sejda'] = function () {
   return new Sejda([
     '--overwrite',
-    '--bookmarks' => 'one_entry_each_doc',
   ]);
 };
 
