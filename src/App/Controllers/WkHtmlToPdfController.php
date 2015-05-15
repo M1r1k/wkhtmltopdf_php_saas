@@ -48,6 +48,7 @@ class WkHtmlToPdfController {
         $this->app['monolog']->addError($this->pdf->getCommand()->getOutput());
         $this->app['monolog']->addError($error);
       }
+      $this->app['monolog']->addInfo($this->pdf->getCommand()->getOutput());
       $this->pdf->cleanBuffer();
     }
     $this->sejda->addDirectories($dir_name);

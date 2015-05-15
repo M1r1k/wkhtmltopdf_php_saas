@@ -30,6 +30,7 @@ $app['wkhtmlto.pdf'] = function () {
     'margin-bottom' => 0,
     'margin-left' => 0,
     'outline',
+    'outline-depth' => 1,
     'use-xserver',
     'enable-internal-links',
     'no-stop-slow-scripts',
