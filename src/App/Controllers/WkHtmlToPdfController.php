@@ -4,7 +4,11 @@ namespace App\Controllers;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-
+/**
+ * Class WkHtmlToPdfController
+ * @package App\Controllers
+ * @todo REFACTOR THIS HELL!!
+ */
 class WkHtmlToPdfController {
 
   /* @var Application */
@@ -43,13 +47,14 @@ class WkHtmlToPdfController {
     $index = 0;
     foreach ($urls as $key => $url) {
       $this->pdf->addPage($url);
-      $this->pdf->saveAs($dir_name . '/' . sprintf('%08d', $index++) . $key . '.pdf');
+      $this->pdf->saveAs($dir_name . '/' . sprintf('%08d', $index++) . '--' . $key . '.pdf');
       if ($error = $this->pdf->getError()) {
         $this->app['monolog']->addError($this->pdf->getCommand()->getOutput());
         $this->app['monolog']->addError($error);
       }
       $this->app['monolog']->addInfo($this->pdf->getCommand()->getOutput());
       $this->pdf->cleanBuffer();
+      $this->pdf->setOptions($this->app['wkhtmlto.pdf.settings']);
     }
     $this->sejda->addDirectories($dir_name);
     $this->sejda->saveAs($this->tmpFileName);

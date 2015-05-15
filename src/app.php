@@ -23,27 +23,29 @@ $app->before(function (Request $request) {
 
 $app->register(new ServiceControllerServiceProvider());
 
-$app['wkhtmlto.pdf'] = function () {
-  return new Pdf([
-    'margin-top' => 0,
-    'margin-right' => 0,
-    'margin-bottom' => 0,
-    'margin-left' => 0,
-    'outline',
-    'outline-depth' => 1,
-    'use-xserver',
-    'enable-internal-links',
-    'no-stop-slow-scripts',
-    'javascript-delay' => '3000',
-    'print-media-type',
-    'orientation' => 'portrait',
-    'page-size' => 'A4',
-    'dpi' => '300',
-    'commandOptions' => [
-      'enableXvfb' => true,
-      'xvfbRunOptions' => '--server-args="-screen 0, 1024x640x24"',
-    ],
-  ]);
+$app['wkhtmlto.pdf.settings'] = [
+  'margin-top' => 0,
+  'margin-right' => 0,
+  'margin-bottom' => 0,
+  'margin-left' => 0,
+  'outline',
+  'outline-depth' => 1,
+  'use-xserver',
+  'enable-internal-links',
+  'no-stop-slow-scripts',
+  'javascript-delay' => '3000',
+  'print-media-type',
+  'orientation' => 'portrait',
+  'page-size' => 'A4',
+  'dpi' => '300',
+  'commandOptions' => [
+    'enableXvfb' => true,
+    'xvfbRunOptions' => '--server-args="-screen 0, 1024x640x24"',
+  ],
+];
+
+$app['wkhtmlto.pdf'] = function () use ($app) {
+  return new Pdf($app['wkhtmlto.pdf.settings']);
 };
 
 $app['sejda'] = function () {

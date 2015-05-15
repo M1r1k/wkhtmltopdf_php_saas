@@ -2,6 +2,7 @@
 
 - hosts: all
   gather_facts: yes
+  remote_user: root
 
   vars:
     apache_listen_port: 80
@@ -9,7 +10,7 @@
     apache_vhosts_filename: vhosts.conf
     apache_vhosts:
       - {
-        servername: "wkhtmltopdf.prod",
+        servername: "wkhtmltopdf.propeople.com.ua",
         documentroot: "/var/wkhtmltopdf/web"
       }
     apache_mods_enabled:
@@ -37,7 +38,7 @@
   roles:
     - { role: cibox-swap }
     - { role: ansible-role-ansible }
-    - { role: ansible-apache }
+    - { role: ansible-role-apache }
     - { role: ansible-role-php }
     - { role: ansible-composer }
     - { role: ansible-role-java }
